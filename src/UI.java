@@ -2,14 +2,14 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
@@ -29,8 +29,19 @@ public class UI extends Application {
 
     private Parent createContent() {
 
+
         pane = new Pane();
         pane.setPrefSize(300, 300);
+
+        BorderPane borderPane = new BorderPane();
+        Menu newMenu = new Menu("New");
+        Menu saveMenu = new Menu("Save");
+        Menu loadMenu = new Menu("Load");
+        MenuBar menuBar = new MenuBar();
+        menuBar.getMenus().addAll(newMenu, loadMenu, saveMenu);
+
+        borderPane.setTop(menuBar);
+
 
         int x = -2;
         int y;
@@ -104,37 +115,6 @@ public class UI extends Application {
 
         VBox root = new VBox(20, pane, vbox);
 
-        root.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.UP) {
-                String message = "go north";
-                input.clear();
-                messages.appendText(message + "\n");
-                messages.appendText(a.action(message) + "\n" + "\n");
-                refresh();
-            }
-            else if (event.getCode() == KeyCode.DOWN) {
-                String message = "go south";
-                input.clear();
-                messages.appendText(message + "\n");
-                messages.appendText(a.action(message) + "\n" + "\n");
-                refresh();
-            }
-            else if (event.getCode() == KeyCode.RIGHT) {
-                String message = "go east";
-                input.clear();
-                messages.appendText(message + "\n");
-                messages.appendText(a.action(message) + "\n" + "\n");
-                refresh();
-            }
-            else if (event.getCode() == KeyCode.LEFT) {
-                String message = "go west";
-                input.clear();
-                messages.appendText(message + "\n");
-                messages.appendText(a.action(message) + "\n" + "\n");
-                refresh();
-            }
-        });
-
         input.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.UP) {
                 String message = "go north";
@@ -167,7 +147,10 @@ public class UI extends Application {
 
         });
 
-        return root;
+        borderPane.setCenter(root);
+
+
+        return borderPane;
     }
 
     @Override
