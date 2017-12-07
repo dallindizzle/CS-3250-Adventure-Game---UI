@@ -22,7 +22,7 @@ public class GameChar implements Serializable{
     }
 
     public String showInventory() {
-        String output = "You are carrying: ";
+        String output = "You are carrying: \n";
         for (int i = 0; i < inventory.length; i++) {
             if (inventory[i] == null) {continue;}
             output += inventory[i] + "\n";
@@ -86,7 +86,9 @@ public class GameChar implements Serializable{
                 output = "You cannot go that way";
                 break;
         }
-        return output + "\n" + sayLoc();
+        String[] tokens = findItem().split("You are");
+
+        return output + "\n" + sayLoc() + "\n" + tokens[0];
     }
 
     String sayLoc() {
@@ -114,9 +116,9 @@ public class GameChar implements Serializable{
 
         String item = m.getItem(locX, locY);
 
-        if (item != "none") {
+        if (!item.equals("none")) {
             String[] tokens = item.split(";");
-            output = "You have found ";
+            output = "You have found: \n";
             for (int i = 0; i < tokens.length; i++) {
                 output += tokens[i] + "\n";
             }

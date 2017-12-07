@@ -1,11 +1,9 @@
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -18,9 +16,9 @@ import java.io.File;
 
 
 public class UI extends Application {
-    private Map m = new Map();
-    private GameChar c = new GameChar(m);
-    private Adventure a = new Adventure(c);
+    private Map m;
+    private GameChar c;
+    private Adventure a;
 
     private TextArea messages = new TextArea();
     TextField input;
@@ -28,17 +26,46 @@ public class UI extends Application {
     Pane pane;
 
     private Parent createContent() {
-
+        m = new Map(getParameters().getRaw().get(0));
+        c = new GameChar(m);
+        a = new Adventure(c);
 
         pane = new Pane();
         pane.setPrefSize(300, 300);
 
         BorderPane borderPane = new BorderPane();
-        Menu newMenu = new Menu("New");
-        Menu saveMenu = new Menu("Save");
-        Menu loadMenu = new Menu("Load");
+        Menu fileMenu = new Menu("File");
+        MenuItem loadMenu = new MenuItem("Load");
+
+        loadMenu.setOnAction(e-> {
+            GameState g = a.load();
+            m = g.getMap();
+            c = g.getGameChar();
+            a = new Adventure(c);
+            messages.clear();
+            messages.appendText("Game has been loaded\n" + c.sayLoc() + "\n\n" );
+            refresh();
+        });
+
+        MenuItem saveMenu = new MenuItem("Save");
+
+        saveMenu.setOnAction(e-> {
+            a.save(new GameState(m, c));
+            messages.appendText("Your game has been saved\n");
+        });
+
+        MenuItem quitMenu = new MenuItem("Quit");
+
+        quitMenu.setOnAction(e-> {
+            Platform.exit();
+            System.exit(0);
+        });
+
+        fileMenu.getItems().addAll(loadMenu, saveMenu, quitMenu);
+
         MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().addAll(newMenu, loadMenu, saveMenu);
+        menuBar.getMenus().addAll(fileMenu);
+
 
         borderPane.setTop(menuBar);
 
@@ -120,28 +147,28 @@ public class UI extends Application {
                 String message = "go north";
                 input.clear();
                 messages.appendText(message + "\n");
-                messages.appendText(a.action(message) + "\n" + "\n");
+                messages.appendText(a.action(message) + "\n");
                 refresh();
             }
             else if (e.getCode() == KeyCode.DOWN) {
                 String message = "go south";
                 input.clear();
                 messages.appendText(message + "\n");
-                messages.appendText(a.action(message) + "\n" + "\n");
+                messages.appendText(a.action(message) + "\n");
                 refresh();
             }
             else if (e.getCode() == KeyCode.RIGHT) {
                 String message = "go east";
                 input.clear();
                 messages.appendText(message + "\n");
-                messages.appendText(a.action(message) + "\n" + "\n");
+                messages.appendText(a.action(message) + "\n");
                 refresh();
             }
             else if (e.getCode() == KeyCode.LEFT) {
                 String message = "go west";
                 input.clear();
                 messages.appendText(message + "\n");
-                messages.appendText(a.action(message) + "\n" + "\n");
+                messages.appendText(a.action(message) + "\n");
                 refresh();
             }
 
@@ -156,7 +183,6 @@ public class UI extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Scene scene = new Scene(createContent());
-
         scene.getRoot().requestFocus();
 
         stage.setScene(scene);

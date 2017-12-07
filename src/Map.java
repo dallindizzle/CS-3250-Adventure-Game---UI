@@ -20,7 +20,7 @@ public class Map implements Serializable {
     private String outImgFile;
     private String personImgFile;
 
-    public Map() {
+    public Map(String mapFile) {
         mapString = "";
         rows = 0;
         cols = 0;
@@ -35,13 +35,13 @@ public class Map implements Serializable {
         outImgFile = "";
         personImgFile = "";
 
-        this.addMap();
+        this.addMap(mapFile);
     }
 
-    public void addMap() {
+    public void addMap(String mapFile) {
         Scanner s = null;
         try {
-            s = new Scanner(new File("map.txt"));
+            s = new Scanner(new File(mapFile));
         } catch (FileNotFoundException x) {
             System.out.println("File open failed.");
             x.printStackTrace();
@@ -184,7 +184,7 @@ public class Map implements Serializable {
     }
 
     public void addItem(int x, int y, String item) {
-        if (itemMapArray[x][y].equals("none")) {itemMapArray[x][y] = item;}
+        if (itemMapArray[x][y].equals("none")) {itemMapArray[x][y] = item + ";";}
         else {
             itemMapArray[x][y] += item + ";";
         }

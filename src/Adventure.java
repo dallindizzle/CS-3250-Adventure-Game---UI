@@ -142,7 +142,7 @@ public class Adventure {
             out.writeObject(g);
             out.close();
             fileOut.close();
-            System.out.println("Serialized data is saved in state.ser");
+            //System.out.println("Serialized data is saved in state.ser");
         } catch (IOException i) {
             i.printStackTrace();
         }
