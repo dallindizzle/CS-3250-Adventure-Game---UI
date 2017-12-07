@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6170aab8-82ec-43ef-8fc6-2ce1b5a0f197" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Adventure.class" afterPath="$PROJECT_DIR$/src/Adventure.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GameChar.class" afterPath="$PROJECT_DIR$/src/GameChar.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Map.class" afterPath="$PROJECT_DIR$/src/Map.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/state.ser" afterPath="$PROJECT_DIR$/state.ser" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Adventure.java" afterPath="$PROJECT_DIR$/src/Adventure.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GameChar.java" afterPath="$PROJECT_DIR$/src/GameChar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Map.java" afterPath="$PROJECT_DIR$/src/Map.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UI.java" afterPath="$PROJECT_DIR$/src/UI.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/state.ser" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/state.ser" afterPath="$PROJECT_DIR$/src/state.ser" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,7 +21,7 @@
       <file leaf-file-name="UI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/UI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
+            <state relative-caret-position="-2822">
               <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -764,7 +757,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
+        <state relative-caret-position="-2822">
           <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
